@@ -59,6 +59,7 @@ function util.load()
   util.highlight("Underlined",  {fg = "#ffff00", bg = "#211D26"})
   util.highlight("Variable",    {fg = "#00ffff", bg = "#211D26"})
   util.highlight("WarningMsg",  {fg = "#ffff00", bg = "#211D26"})
+  util.highlight("CursorLine",  {fg = "#ffffff", bg = "#211D26"})
   util.highlight("Todo",        {fg = "#ffff00", bg = "#211D26"})
 end
 
