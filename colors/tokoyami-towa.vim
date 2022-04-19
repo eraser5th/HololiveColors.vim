@@ -1,1 +1,1 @@
-lua require('HololiveColor').colorscheme()
+lua require('HololiveColors').colorscheme()
