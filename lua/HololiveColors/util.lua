@@ -58,6 +58,7 @@ function util.load()
   util.highlight("Variable", {fg = "#008888", bg = "#000000"})
   util.highlight("WarningMsg", {fg = "#888800", bg = "#000000"})
   util.highlight("Todo", {fg = "#888800", bg = "#000000"})
+  util.highlight("Normal", {fg = "#ffffff", bg = "#211D26"})
 end
 
 return util
