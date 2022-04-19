@@ -41,7 +41,7 @@ function util.load()
   vim.g.colors_name = "tokoyami-towa"
 
   util.highlight("Normal",      {fg = "#ffffff", bg = "#211D26"})
-  util.highlight("CursorLine",  {                bg = "#2A2A2A"})
+  util.highlight("CursorLine",  {                bg = "#775E7B"})
 
   util.highlight("Comment",     {fg = "#00ff00",               })
   util.highlight("Constant",    {fg = "#00ff00",               })
