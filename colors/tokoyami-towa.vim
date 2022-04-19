@@ -1,1 +1,1 @@
-lua require('HololiveColors').colorscheme()
+lua require('HololiveColors.tokoyami-towa').colorscheme()
