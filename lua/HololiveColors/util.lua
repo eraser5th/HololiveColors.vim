@@ -1,13 +1,13 @@
 local util = {}
 local vim = vim
 
----@class Color
-local c = {
-  fg = "#000000",
-  bg = "#ffffff",
-  sp = "?",
-  style = "?",
-}
+---@alias Style "bold" | "italic" | "underline" | "undercurl" | "strikethrough" | "inverse" | "none"
+
+--- @class Color
+  --- @field fg string
+  --- @field bg string
+  --- @field sp string
+  --- @field style Style
 
 ---@param group string
 ---@param color Color
@@ -17,9 +17,9 @@ function util.highlight(group, color)
   local bg = color.bg and "guibg=" .. color.bg or "guibg=NONE"
   local sp = color.sp and "guisp=" .. color.sp or ""
 
-  local hl = "highlight " .. group .. " " .. style .. " " .. fg .. " " .. bg .. " " .. sp
+  local hlCommand = "highlight " .. group .. " " .. style .. " " .. fg .. " " .. bg .. " " .. sp
 
-  vim.cmd(hl)
+  vim.cmd(hlCommand)
 end
 
 ---@param group_from string
@@ -28,39 +28,23 @@ function util.link(group_from, group_to)
   vim.cmd("highlight! " .. group_from .. " " .. group_to)
 end
 
-function util.load()
-  -- only needed to clear when not the default colorscheme
+---@param colorSchemeName string
+function util.load(colorSchemeName)
   if vim.g.colors_name then
-    vim.cmd("hi clear")
+    vim.cmd("highlight clear")
   end
   if vim.fn.exists("syntax_on") then
     vim.cmd("syntax reset")
   end
 
   vim.o.termguicolors = true
-  vim.g.colors_name = "tokoyami-towa"
+  vim.g.colors_name = colorSchemeName
 
-  util.highlight("Normal",      {fg = "#ffffff", bg = "#211D26"})
-  util.highlight("CursorLine",  {                bg = "#775E7B"})
+  local hilights = require("HololiveColors." .. colorSchemeName .. ".hilights")
 
-  util.highlight("Comment",     {fg = "#00ff00",               })
-  util.highlight("Constant",    {fg = "#00ff00",               })
-  util.highlight("Error",       {fg = "#ff0000",               })
-  util.highlight("Function",    {fg = "#0000ff",               })
-  util.highlight("Identifier",  {fg = "#00ffff",               })
-  util.highlight("Keyword",     {fg = "#ff0000",               })
-  util.highlight("Label",       {fg = "#ff0000",               })
-  util.highlight("Number",      {fg = "#00ffff",               })
-  util.highlight("Operator",    {fg = "#ffff00",               })
-  util.highlight("PreProc",     {fg = "#ffff00",               })
-  util.highlight("Special",     {fg = "#ffff00",               })
-  util.highlight("Statement",   {fg = "#ffff00",               })
-  util.highlight("String",      {fg = "#00ffff",               })
-  util.highlight("Type",        {fg = "#ffff00",               })
-  util.highlight("Underlined",  {fg = "#ffff00",               })
-  util.highlight("Variable",    {fg = "#00ffff",               })
-  util.highlight("WarningMsg",  {fg = "#ffff00",               })
-  util.highlight("Todo",        {fg = "#ffff00",               })
+  for group, color in pairs(hilights) do
+    util.highlight(group, color)
+  end
 end
 
 return util

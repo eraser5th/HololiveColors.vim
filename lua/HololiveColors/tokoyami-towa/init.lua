@@ -3,7 +3,7 @@ local util = require("HololiveColors.util")
 local M = {}
 
 function M.colorscheme()
-  util.load()
+  util.load("tokoyami-towa")
 end
 
 return M
