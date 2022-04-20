@@ -40,7 +40,7 @@ function util.load(colorSchemeName)
   vim.o.termguicolors = true
   vim.g.colors_name = colorSchemeName
 
-  local hilights = require("HololiveColors." .. colorSchemeName .. ".hilights")
+  local hilights = require("HololiveColors." .. colorSchemeName .. ".highlights")
 
   for group, color in pairs(hilights) do
     util.highlight(group, color)

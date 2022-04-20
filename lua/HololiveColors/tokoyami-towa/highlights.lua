@@ -1,8 +1,8 @@
 local colors = require("HololiveColors.tokoyami-towa.colors")
 
-local hilights = {
+local highlights = {
   Normal      =     { fg = colors.white,  bg = colors.bgDark, },
   CursorLine  =     {                     bg = colors.bgLight, },
 }
 
-return hilights
+return highlights
