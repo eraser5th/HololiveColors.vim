@@ -1,13 +1,6 @@
-local util = {}
 local vim = vim
 
----@alias Style "bold" | "italic" | "underline" | "undercurl" | "strikethrough" | "inverse" | "none"
-
---- @class Color
-  --- @field fg string
-  --- @field bg string
-  --- @field sp string
-  --- @field style Style
+local util = {}
 
 ---@param group string
 ---@param color Color
@@ -28,8 +21,7 @@ function util.link(group_from, group_to)
   vim.cmd("highlight! " .. group_from .. " " .. group_to)
 end
 
----@param colorSchemeName string
-function util.load(colorSchemeName)
+function util.initColorScheme(colorSchemeName)
   if vim.g.colors_name then
     vim.cmd("highlight clear")
   end
@@ -39,11 +31,17 @@ function util.load(colorSchemeName)
 
   vim.o.termguicolors = true
   vim.g.colors_name = colorSchemeName
+end
 
-  local hilights = require("HololiveColors." .. colorSchemeName .. ".highlights")
+function util.getHighlights(colorSchemeName)
+  return require("HololiveColors." .. colorSchemeName .. ".highlights")
+end
 
-  for group, color in pairs(hilights) do
-    util.highlight(group, color)
+---@param target table
+---@param callback function
+function util.forEach(target, callback)
+  for key, value in pairs(target) do
+    callback(value, key)
   end
 end
 
