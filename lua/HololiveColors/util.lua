@@ -21,6 +21,7 @@ function util.link(group_from, group_to)
   vim.cmd("highlight! " .. group_from .. " " .. group_to)
 end
 
+--- @param colorSchemeName string
 function util.initColorScheme(colorSchemeName)
   if vim.g.colors_name then
     vim.cmd("highlight clear")
@@ -33,6 +34,8 @@ function util.initColorScheme(colorSchemeName)
   vim.g.colors_name = colorSchemeName
 end
 
+--- @param colorSchemeName string
+--- @return table
 function util.getHighlights(colorSchemeName)
   return require("HololiveColors." .. colorSchemeName .. ".highlights")
 end
