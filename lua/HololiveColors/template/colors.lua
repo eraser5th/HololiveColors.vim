@@ -1,6 +1,6 @@
 local colors = {
-  bgDark        = "#211D26",
-  bgLight       = "#775E7B",
+  bgDark        = "#17141B",
+  bgLight       = "#474050",
   white         = "#ffffff",
   black         = "#000000",
   red           = "#ff0000",
