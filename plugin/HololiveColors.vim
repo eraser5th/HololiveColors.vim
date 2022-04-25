@@ -1,4 +1,4 @@
-if g:hololive_random
+if exists("g:hololive_random")
   lua require('HololiveColors.random').loadColorSchemeRandom()
 endif
 
